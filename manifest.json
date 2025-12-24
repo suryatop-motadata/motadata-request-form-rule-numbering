@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Motadata Request Form Rule Numbering",
+  "version": "1.0",
+  "description": "Adds serial numbers to Request Form Rules",
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

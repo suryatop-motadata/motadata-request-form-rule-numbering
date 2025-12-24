@@ -1,0 +1,18 @@
+.rule-number {
+  font-weight: 600;
+  color: #1976d2;
+}
+
+.edit-rule-number {
+  font-size: 13px;
+}
+.edit-rule-number {
+  margin-right: 6px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.edit-rule-number.green { color: #2e7d32; }
+.edit-rule-number.blue  { color: #f3ef16ff; }
+.edit-rule-number.red   { color: #d32f2f; }
+
