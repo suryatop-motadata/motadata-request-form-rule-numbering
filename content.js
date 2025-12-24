@@ -46,6 +46,7 @@
   /* =========================
      LIST VIEW PROCESSING
      ========================= */
+
   function processListView() {
     document.querySelectorAll('tbody tr').forEach(row => {
       const nameCell = row.querySelector('td.resource-link.cursor-pointer');
@@ -67,6 +68,116 @@
       nameCell.dataset.colored = 'true';
     });
   }
+  /* =========================
+   LIST VIEW – APPEND NEW RULE AT END
+   ========================= */
+// function processListView() {
+//   const rows = Array.from(document.querySelectorAll('tbody tr'));
+
+//   // Step 1: Collect existing numbers
+//   const usedNumbers = new Set();
+
+//   rows.forEach(row => {
+//     const cell = row.querySelector('td.resource-link');
+//     if (!cell) return;
+
+//     const match = cell.textContent.trim().match(/^(\d+)\./);
+//     if (match) {
+//       usedNumbers.add(Number(match[1]));
+//     }
+//   });
+
+//   const maxNumber = usedNumbers.size
+//     ? Math.max(...usedNumbers)
+//     : 0;
+
+//   // Step 2: Fix only incorrect / new rows
+//   rows.forEach(row => {
+//     const nameCell = row.querySelector('td.resource-link.cursor-pointer');
+//     const execCell = row.querySelectorAll('td.text-ellipsis')[0];
+//     if (!nameCell || !execCell) return;
+
+//     const executionText = execCell.textContent.trim().toLowerCase();
+//     const colorClass = EXECUTION_COLOR[executionText];
+//     if (!colorClass) return;
+
+//     const text = nameCell.textContent.trim();
+//     const match = text.match(/^(\d+)\.\s*(.+)$/);
+
+//     // If number exists and is not duplicate → KEEP IT
+//     if (match && usedNumbers.has(Number(match[1]))) {
+//       nameCell.innerHTML = `
+//         <span class="rule-no ${colorClass}">${match[1]}.</span> ${match[2]}
+//       `;
+//       return;
+//     }
+
+//     // Otherwise, this is a NEW rule → append at end
+//     const ruleName = text.replace(/^\d+\.\s*/, '');
+//     const newNumber = maxNumber + 1;
+
+//     nameCell.innerHTML = `
+//       <span class="rule-no ${colorClass}">${newNumber}.</span> ${ruleName}
+//     `;
+
+//     usedNumbers.add(newNumber);
+//   });
+// }
+/* =========================
+   LIST VIEW PROCESSING (FIXED)
+   ========================= */
+// function processListView() {
+//   const rows = Array.from(document.querySelectorAll('tbody tr'));
+
+//   // 1️⃣ Collect already-used numbers
+//   const usedNumbers = new Set();
+
+//   rows.forEach(row => {
+//     const cell = row.querySelector('td.resource-link.cursor-pointer');
+//     if (!cell) return;
+
+//     const match = cell.textContent.trim().match(/^(\d+)\./);
+//     if (match) {
+//       usedNumbers.add(Number(match[1]));
+//     }
+//   });
+
+//   let maxNumber = usedNumbers.size ? Math.max(...usedNumbers) : 0;
+
+//   // 2️⃣ Process rows
+//   rows.forEach(row => {
+//     const nameCell = row.querySelector('td.resource-link.cursor-pointer');
+//     const execCell = row.querySelectorAll('td.text-ellipsis')[0];
+
+//     if (!nameCell || !execCell) return;
+
+//     const executionText = execCell.textContent.trim().toLowerCase();
+//     const colorClass = EXECUTION_COLOR[executionText];
+//     if (!colorClass) return;
+
+//     const rawText = nameCell.textContent.trim();
+//     const match = rawText.match(/^(\d+)\.\s*(.+)$/);
+
+//     // ✅ Existing rule → keep its number
+//     if (match && usedNumbers.has(Number(match[1]))) {
+//       nameCell.innerHTML = `
+//         <span class="rule-no ${colorClass}">${match[1]}.</span> ${match[2]}
+//       `;
+//       return;
+//     }
+
+//     // ✅ New rule → append at end
+//     const ruleName = rawText.replace(/^\d+\.\s*/, '');
+//     maxNumber += 1;
+
+//     nameCell.innerHTML = `
+//       <span class="rule-no ${colorClass}">${maxNumber}.</span> ${ruleName}
+//     `;
+
+//     usedNumbers.add(maxNumber);
+//   });
+// }
+
 
   /* =========================
      EDIT VIEW PROCESSING
